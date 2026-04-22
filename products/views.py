@@ -20,7 +20,7 @@ class ProductListCreateView(APIView):
         return queryset
 
     def get(self, request):
-        products = Product.objects.all()
+        products = self.get_queryset()
         serializer = ProductSerializer(products, many=True, context={'request': request})
         return Response({'products':serializer.data}, status=status.HTTP_200_OK)
 
